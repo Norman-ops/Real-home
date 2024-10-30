@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property24 Clone - Find Your Dream Home</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('R.jpeg'); /* Background image */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(44, 62, 80, 0.8);
+            overflow: hidden;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .navbar a {
+            float: left;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .navbar a:hover {
+            background-color: #0066cc;
+            transition: background-color 0.4s ease;
+        }
+        .navbar form {
+            float: right;
+            padding: 10px 20px;
+        }
+        .navbar input[type="text"] {
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+        }
+        .navbar button {
+            padding: 10px 16px;
+            background-color: #2980b9;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .navbar button:hover {
+            background-color: #0066cc;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            color: white;
+            padding: 150px 20px;
+            text-align: center;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 10px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 30px;
+            animation: fadeIn 3s ease-in-out;
+        }
+        .hero button {
+            padding: 15px 30px;
+            background-color: #2980b9;
+            border: none;
+            color: white;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            animation: fadeIn 4s ease-in-out;
+        }
+        .hero button:hover {
+            background-color: #0066cc;
+            transition: background-color 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Search Bar */
+        .search-bar {
+            padding: 20px;
+            background-color: rgba(44, 62, 80, 0.8);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: -100px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 999;
+        }
+        .search-bar input[type="text"],
+        .dropdown {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: none;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .more-filters {
+            background-color: #2980b9;
+            color: rgba(255, 255, 255, 0.673);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .more-filters:hover {
+            background-color: #0066cc;
+        }
+
+        /* Property Listings */
+        .property-listings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            padding: 60px 20px;
+        }
+        .property-item {
+            background-color: rgba(255, 255, 255, 0.673);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .property-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+        .property-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .property-item h3 {
+            color: #2c3e50;
+            margin: 10px 0;
+            font-size: 22px;
+        }
+        .property-item p {
+            color: #555;
+        }
+
+        /* Agent Section */
+        .agent-section {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+            margin-top: 60px;
+        }
+        .agent-section h2 {
+            font-size: 28px;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+        .agents-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .agent-item {
+            text-align: center;
+            width: 180px;
+            margin-bottom: 20px;
+        }
+        .agent-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+        }
+        .agent-item h4 {
+            color: #2c3e50;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .agent-item p {
+            color: #555;
+            font-size: 16px;
+        }
+        .star-rating {
+            color: gold;
+            font-size: 18px;
+        }
+            /* Agent Section */
+        .agent-section {
+            text-align: center;
+            padding: 60px 20px;
+            background-image: url('pexels-khwanchai-4161619.jpg'); /* Use the wood pattern image */
+            background-size: cover;
+            background-position: center;
+            margin-top: 60px;
+            color: #2c3e50;
+        }
+
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="Home.html">Homepage</a>
+        <a href="Property.html">Property for Sale</a>
+        <a href="houses.html">Houses for Sale</a>
+        <a href="modern.html">Modern Houses</a>
+        <a href="Stylish.html">Stylish Apartments</a>
+        <a href="luxurious.html">Luxurious Homes</a>
+        <a href="Buy.html">Buy</a>
+        <a href="Rent.html">Rent</a>
+        <a href="Sell.html">Sell</a>
+        <a href="Calculator.html">Calculators</a>
+        <a href="Advice.html">Advice</a>
+        <a href="Sign.html">Sign In</a>
+
+        <!-- Search Bar in Navigation -->
+        <form action="search_results.php" method="GET">
+            <input type="text" name="query" placeholder="Search properties..." required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Your Dream Home Awaits</h1>
+        <p>Explore thousands of homes and find the one that speaks to you</p>
+        <button>Explore Now</button>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="searchQueryInput" placeholder="Search for a City, Suburb or Web Reference">
+        <select id="propertyTypeSelect" class="dropdown">
+            <option value="">Property Type</option>
+            <option value="House">House</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Townhouse">Townhouse</option>
+            <option value="Vacant Land">Vacant Land</option>
+        </select>
+        <select id="priceRangeSelect" class="dropdown">
+            <option value="">Price Range</option>
+            <option value="0-500000">R0 - R500,000</option>
+            <option value="500000-1000000">R500,000 - R1,000,000</option>
+            <option value="1000000-2000000">R1,000,000 - R2,000,000</option>
+            <option value="2000000-5000000">R2,000,000 - R5,000,000</option>
+            <option value="5000000-10000000">R5,000,000 - R10,000,000</option>
+            <option value="10000000+">R10,000,000+</option>
+        </select>
+        <button class="more-filters" onclick="searchProperties()">Search</button>
+    </div>
+
+    <!-- Property Listings -->
+    <div class="property-listings">
+        <div class="property-item">
+            <img src="573114_1-EXT.jpg" alt="Property 1">
+            <h3>Luxury House in Sandton</h3>
+            <p>Price: R 5,000,000</p>
+        </div>
+        <div class="property-item">
+            <img src="house-rosebank-13.jpg" alt="Property 2">
+            <h3>Modern Apartment in Rosebank</h3>
+            <p>Price: R 2,000,000</p>
+        </div>
+        <div class="property-item">
+            <img src="R (3).jpeg" alt="Property 3">
+            <h3>Stylish Home in Cape Town</h3>
+            <p>Price: R 4,500,000</p>
+        </div>
+    </div>
+
+    <!-- Agent Profiles Section -->
+    <div class="agent-section">
+        <h2>Meet Our Top Agents</h2>
+        <div class="agents-container">
+            <div class="agent-item">
+                <img src="1_i95XnW-lf9GEMI7I8lPQXw.jpg" alt="Thabo Maseko" class="agent-image">
+                <h4>Thabo Maseko</h4>
+                <p>Phone: +27 62 123 4567</p>
+                <div class="star-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="agent-item">
+                <img src="skills-empire-md-1-480x480.jpg" alt="Lebogang Tshabalala" class="agent-image">
+                <h4>Lebogang Tshabalala</h4>
+                <p>Phone: +27 72 456 7890</p>
+                <div class="star-rating">⭐⭐⭐⭐</div>
+            </div>
+            <div class="agent-item">
+                <img src="New-Project.jpg" alt="Bongani Ndlovu" class="agent-image">
+                <h4>Bongani Ndlovu</h4>
+                <p>Phone: +27 81 987 6543</p>
+                <div class="star-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="agent-item">
+                <img src="1704951965943.jpeg" alt="Ayanda Dlamini" class="agent-image">
+                <h4>Ayanda Dlamini</h4>
+                <p>Phone: +27 63 321 1234</p>
+                <div class="star-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="agent-item">
+                <img src="1653481647209.jpeg" alt="Kea Mokoena" class="agent-image">
+                <h4>Kea Mokoena</h4>
+                <p>Phone: +27 60 987 4321</p>
+                <div class="star-rating">⭐⭐⭐⭐</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Property24 Clone. All Rights Reserved.</p>
+        <p>Follow us on:
+            <a href="#">Facebook</a> |
+            <a href="#">Twitter</a> |
+            <a href="#">Instagram</a>
+        </p>
+    </footer>
+    <script>
+        function searchProperties() {
+            const query = document.getElementById('searchQueryInput').value.toLowerCase();
+            const type = document.getElementById('propertyTypeSelect').value;
+            const priceRange = document.getElementById('priceRangeSelect').value;
+
+            const propertyItems = document.querySelectorAll('.property-item');
+            propertyItems.forEach(item => {
+                const itemType = item.getAttribute('data-type');
+                const itemPrice = parseInt(item.getAttribute('data-price'));
+                const itemName = item.querySelector('h3').textContent.toLowerCase();
+
+                let isVisible = true;
+
+                if (query && !itemName.includes(query)) {
+                    isVisible = false;
+                }
+
+                if (type && itemType !== type) {
+                    isVisible = false;
+                }
+
+                if (priceRange) {
+                    const [minPrice, maxPrice] = priceRange.split('-').map(Number);
+                    if (itemPrice < minPrice || (maxPrice && itemPrice > maxPrice)) {
+                        isVisible = false;
+                    }
+                }
+
+                if (isVisible) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
